@@ -1,0 +1,9 @@
+[project]
+name = "Ram"
+version = "1.0.0"
+path = "src"
+outdir = "out"
+
+[tests]
+path = "tests"
+components = ["RamTest"]

@@ -1,0 +1,30 @@
+namespace Livt.IO
+
+component Ram
+{
+	ram: InternalRam
+	
+	new()
+	{
+		ram = new InternalRam()
+	}
+	
+	// Keep the public address as int until logic[8] literal calls preserve width.
+	// See DESIGN_NOTE.md for the current compiler observations.
+	public fn ReadByte(address: int) logic[8]
+	{
+		ram.address = address
+		
+		return ram.read_data
+	}
+
+	public fn WriteByte(address: int, value: logic[8])
+	{
+		state {
+			ram.address = address
+			ram.write_data = value
+			ram.write_enable = 0b1
+		}
+		ram.write_enable = 0b0
+	}
+}
