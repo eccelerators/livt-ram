@@ -17,9 +17,9 @@ The current package is organized around two implementation components:
 
 The RAM is currently fixed to:
 
-- 256 addressable cells
+- 2048 addressable cells
 - 8-bit `logic[8]` data values
-- 8-bit internal address width
+- 11-bit internal address width
 
 The public API is intentionally small and centered on byte-level random access:
 
@@ -66,8 +66,8 @@ Configured test components:
 - `RamTest`
 
 The test suite may emit `NUMERIC_STD.TO_SIGNED: vector truncated` warnings for
-addresses in the upper half of the 8-bit address range. Those warnings are
-documented in [DESIGN_NOTE.md](DESIGN_NOTE.md).
+addresses in the upper half of the 11-bit address range (≥ 1024). Those warnings
+are documented in [DESIGN_NOTE.md](DESIGN_NOTE.md).
 
 ## 📚 Component Guide
 
@@ -88,7 +88,7 @@ Public methods:
 - `ReadByte(address: int) logic[8]`
 
 `address` is currently typed as `int` in the public Livt API as a compiler
-workaround. The internal RAM port remains `logic[8]`.
+workaround. The internal RAM port remains `logic[11]`.
 
 ### `InternalRam`
 
@@ -97,7 +97,7 @@ Opaque Livt component backed by [src/InternalRam.vhd](src/InternalRam.vhd).
 Public ports:
 
 - `write_enable: in logic[1]`
-- `address: in logic[8]`
+- `address: in logic[11]`
 - `write_data: in logic[8]`
 - `read_data: out logic[8]`
 

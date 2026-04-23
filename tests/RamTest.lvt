@@ -60,9 +60,9 @@ component RamTest
 		var addr0 = ram.ReadByte(0)
 		assert(addr0 == 0b00000001)
 		
-		ram.WriteByte(255, 0b11111110)
-		var addr255 = ram.ReadByte(255)
-		assert(addr255 == 0b11111110)
+		ram.WriteByte(2047, 0b11111110)
+		var addr2047 = ram.ReadByte(2047)
+		assert(addr2047 == 0b11111110)
 		
 		var addr0Check = ram.ReadByte(0)
 		assert(addr0Check == 0b00000001)
@@ -134,15 +134,15 @@ component RamTest
 	fn TestSparseAddressPattern()
 	{
 		ram.WriteByte(0, 0b00000001)
-		ram.WriteByte(64, 0b01000000)
-		ram.WriteByte(128, 0b10000000)
-		ram.WriteByte(192, 0b11000000)
-		ram.WriteByte(255, 0b11111111)
+		ram.WriteByte(512, 0b01000000)
+		ram.WriteByte(1024, 0b10000000)
+		ram.WriteByte(1536, 0b11000000)
+		ram.WriteByte(2047, 0b11111111)
 		
 		assert(ram.ReadByte(0) == 0b00000001)
-		assert(ram.ReadByte(64) == 0b01000000)
-		assert(ram.ReadByte(128) == 0b10000000)
-		assert(ram.ReadByte(192) == 0b11000000)
-		assert(ram.ReadByte(255) == 0b11111111)
+		assert(ram.ReadByte(512) == 0b01000000)
+		assert(ram.ReadByte(1024) == 0b10000000)
+		assert(ram.ReadByte(1536) == 0b11000000)
+		assert(ram.ReadByte(2047) == 0b11111111)
 	}
 }
