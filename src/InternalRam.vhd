@@ -21,7 +21,7 @@ use IEEE.Numeric_Std.all;
 use work.livt_lang_icontext_package.t_icontext_in;
 ---
 
-entity InternalRam is
+entity livt_io_internalram is
 	generic (
 		InitialCellValue : std_logic_vector := x"00"
 	);
@@ -36,7 +36,7 @@ entity InternalRam is
 	);
 end;
 
-architecture RTL of InternalRam is
+architecture RTL of livt_io_internalram is
 
 	constant BYTE_WIDTH : positive := 8;
 	constant DATA_BYTE_COUNT : natural := ctor_write_data'length / BYTE_WIDTH;
