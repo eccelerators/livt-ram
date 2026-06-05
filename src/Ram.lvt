@@ -13,7 +13,7 @@ component Ram
 	// See DESIGN_NOTE.md for the current compiler observations.
 	public fn ReadByte(address: int) logic[8]
 	{
-		ram.address = address
+		ram.address = address as logic[11]
 		
 		return ram.read_data
 	}
@@ -21,7 +21,7 @@ component Ram
 	public fn WriteByte(address: int, value: logic[8])
 	{
 		state {
-			ram.address = address
+			ram.address = address as logic[11]
 			ram.write_data = value
 			ram.write_enable = 0b1
 		}
